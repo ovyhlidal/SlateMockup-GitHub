@@ -1,0 +1,630 @@
+FORMAT: 1A
+
+# SlateMockup
+
+This is the API documentation for the Blackboard Transact Slate project.  The intended audience is for developers in the Phoenix and Brno offices.
+
+# Group Customer
+
+## Customer Balances [/customer/{id}/balance]
+
+### Customer Board Balance Get [GET /customer/{id}/balance/board]
++ Attributes
+    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Customer Board Balance Get Response)
+
+### Customer Event Balance Get [GET /customer/{id}/balance/event]
++ Attributes
+    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Customer Event Balance Get Response)
+
+### Customer Stored Value Balance Get [GET /customer/{id}/balance/storedvalue]
++ Attributes
+    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Customer Stored Value Balance Get Response)
+    
+    
+## Customer Management [/customer]
+
+### Customer Credential Verify [POST /customer/credential/verify]
++ Request (application/json)
+    + Attributes (Customer Credential Verify Request)
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Customer Credential Verify Response)
+    
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Customer Info Get [GET /customer/{id}]
++ Attributes
+    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Customer Get Response)
+
+# Group Device
+
+## Device Operation [/device]
+
+### Device Heartbeat [POST /device/heartbeat]
++ Request (application/json)
+    + Attributes (Device Heartbeat Request)
+    
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Device Heartbeat Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Device Login [POST /device/login]
++ Request (application/json)
+    + Attributes (Device Login Request)
+    
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Device Login Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Device Logout [POST /device/logout]
++ Request (application/json)
+    + Attributes (Device Logout Request)
+    
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Device Logout Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Download Cashiers [GET /device/{id}/cashiers]
++ Attributes
+    + id: `ffffffff-ffff-ffff-ffff-ffffffffffff` (string, required) - The unique identifier assigned to the device.
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Cashiers Get Response)
+    
+
+### Download Device Settings [GET /device/{id}/settings]
++ Attributes
+    + id: `ffffffff-ffff-ffff-ffff-ffffffffffff` (string, required) - The unique identifier assigned to the device.
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Device Settings Response)
+
+### Register a device [POST /device/register]
++ Request (application/json)
+    + Attributes (Device Registration Request)
+    
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+            Location: /device/ffffffff-ffff-ffff-ffff-ffffffffffff
+    + Attributes (Device Registration Response)
+    
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+    
+
+# Group Operator
+
+## Operator Management [/operator]
+
+### Operator PIN Change [PUT /operator/pinchange]
++ Request (application/json)
+    + Attributes (Operator PIN Change Request)
+    
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Operator PIN Change Response)
+    
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Operator Validate [POST /operator/validate]
++ Request (application/json)
+    + Attributes (Operator Validate Request)
+    
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Operator Validate Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+# Data Structures
+
+
+## Base objects section (object) - do not use for documentation
++ x: `************************************************************************************************`
+
+
+## Balance Board Base (object)
++ BoardPlanId: 1 (string) - The identifier for the board plan.
++ BoardPlanName: MyBoardPlanName (string) - The name for the board plan.
++ BoardPlanPriority: 1 (number) - The priority of the plan.
++ IsActive: true (boolean) - Indicates if the plan is active.
++ RegularGridLeft: 65535 (number)
++ GuestGridLeft: 65535 (number)
++ PeriodLeft: 65535 (number)
++ DayLeft: 65535 (number)
++ WeekLeft: 65535 (number)
++ MonthLeft: 65535 (number)
++ SemesterQuarterLeft: 65535 (number)
++ YearLeft: 65535 (number)
++ GuestTotalLeft: 65535 (number)
++ ExtraLeft: 65535 (number)
++ TransferLeft: 65535 (number)
++ TransferMealsBy: W (string)
++ GuestReset: W (string)
++ ExtraReset: D (string)
++ CashEquivAmount: 8000 (number)
++ LimitPeriodBy: Week (enum[string])
+    + Members
+        + Week
+        + Month
+        + Semester
+        + Year
+
+## Balance Event Base (object)
++ EventNumber: 1 (number)
++ Name: My Event (string)
++ IsActive: true (boolean)
++ LimitBy: null (string)
++ RegularAccess (object)
+    + AllowedCounts: 100 (number)
+    + RemainingCounts: 100 (number)
++ GuestAccess (object)
+    + AllowedCounts: 100 (number)
+    + RemainingCounts: 100 (number)
+
+## Balance Stored Value Base (object)
++ CustomerId: 6000001 (string, required) - The identifier for the customer.  Can be card number or customer number.
++ TenderId: 1 (string, required) - The identifier for the tender to get a balance on.
++ AvailableBalance: 100 (number) - The available balance in the stored value account.
++ TaxExempt: false (boolean) - Inidcated whether or not the the account is tax exempt.
++ Discounts (array[number]) - A list of 0 or more discount percentages.
++ Surcharges (array[number]) - A list of 0 or more surcharge percentages.
+
+## Board Period Base (object)
++ Period: 1 (number) - Board Period Number.
++ BoardPeriodDay: 1 (number) - Board Period Day.
++ ProfitCenterId: 1 (number) - Profit Center ID.
++ BoardPeriodName: MyPeriodName (string) - Board Period Name.
++ BoardPeriodStartDateTime: `2017-04-23T12:00:00.123` (string) - Board Period Start Date.
++ BoardPeriodStopDateTime: `2017-04-23T13:00:00.321Z` (string) - Board Period Start Date.
++ CePeriodStartDateTime: `` (string) - CE Period Start Date.
++ CePeriodStopDateTime: `` (string) - CE Period Start Date.
+
+## Card Format Base (object)
++ Name: `My Card Format` (string) - The card format name.
++ PrioritySequence: 1 (number) - Order in which the formats should be displayed/processed.
++ SiteCode: `some_site_code` (string) - Site Code on card.
++ SiteCodeStartPosition: 1 (number) - Start position of the site code.
++ SiteCodeStartType: 0 (number) - (0) - Absolute position from the first digit on track 2; (1) - Relative positioning from the first field separator on track 2.
++ SiteCodeLength: 2 (number) - The length of the site code.
++ SiteCodeCheckOnline: false (boolean) - If online, check site code.
++ SiteCodeCheckOffline: false (boolean) - If offline, check site code.
++ IdNumberStartPosition: 0 (number) - The start position of the ID number.
++ IdNumberStartType: 0 (number) - (0) - Absolute position from the first digit on track 2; (1) - Relative positioning from the first field separator on track 2.
++ IdNumberLength: 12 (number) - The length of the Id number.
++ IssueNumberStart: 15 (number) - The position of the issue number.
++ IssueNumberStartType: 0 (number) - Absolute position from the first digit on track 2; (1) - Relative positioning from the first field separator on track 2.
++ IssueNumberLength: 2 (number) - Maximum length of issue number.
++ MinimumDigitsTrack2: 0 (number) - The minimum number of digits on track 2
++ MaximumDigitsTrack2: 22 (number) - The maximum number of digits on track 2
+
+## Cashier Base (object)
++ CashierId: 1 (number) - The identifier for the cashier.
++ CashierNumber: 1 (number) - The number for the cashier (used for login purposes).
++ FullName: `bs manager (1,1)` (string) - The full name of the cashier.
++ Pin: 1 (number) - The PIN for the cashier.
++ IsManager: true (boolean) - True means the cashier has manager override privilege.
++ CashDrawer: 1 (number) - The cashier`s drawer number.
++ PinRequired: false (boolean) - Is the cashier`s pin required for login.
++ PinChangeRequired: false (boolean) - Does the cashier have to change their pin.
++ CardNumber: 600001 (string) - The cashier`s card number.
++ IssueNumber: null (string) - The cashier`s card issue number.
++ Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the cashier.
+        
+## Credential Enumeration (enum[string])
+        + Track2 - Credential origin is from a card swipe of Track2 data.
+        + ManualEntry - Credential origin was manually keyed.
+        + Email - Credential is an email address.
++ CardNumber - The card number.
++ IssueNumber - The issue number assigned to a card (also requires CardNumber credential to be present).
++ UserGuid - The unigue (Guid) identifier assigned to the customer.
++ CustomerNumber - The number assigned to the customer in TS.
+
+## Credential Base (object)
++ Type (Credential Enumeration) - Enumeration of possible credential values.
++ Value: `0000000001223334444` (string) - The value of the credential. 
+
+## Customer Base (object)
++ CustId: 501 (number) - The customer id that corresponds to the CUST_ID column in the CUSTOMER table.
++ CustNum: 0000000000000000600001 (string) - The customer number that corresponds to the CUSTNUM column in the CUSTOMER table.
++ DefaultCardNum: 0000000000000000600001 (string) - The default card number that corresponds to the DEFAULTCARDNUM column in the CUSTOMER table.
++ FirstName: tbfirstname600001 (string) - The first name of the customer.
++ MiddleName: tbmiddlename600001 (string) - The middle name of the customer.
++ LastName: tblastname600001 (string) - The last name of the customer.
++ Birthdate: null (string) - The birthdate of the customer.
++ Sex: M (string) - Customer Sex (M-Male, F-Female, N-Not Specified).
++ PinNumber: 6001 (number) - The pin number assigned to the customer.
++ IsActive: true (boolean) - Determines if the customer is active.
++ ActiveStartDate: `2012-04-23T18:25:43.511Z` (string) - The date in which the customer becomes active.  A null value means since the beginning of time.
++ ActiveEndDate: `2020-04-23T18:25:43.511Z` (string) - The datetime when the customer will no longer be active.  Value can be null denoting no end date.
++ OpenDateTime: `2012-04-23T18:25:43.511Z` (string) - Date/Time the customer was added to the system.
++ LastModDateTime: `2017-01-30T18:25:43.511Z` (string) - Last Modified Date/Time.
++ LastModUsername: t (string) - Last Modified User Name.
++ DoorExtendedUnlockAllowed: F (string) - Denotes whether or not the customer will have an extended unlock on door devices.
+
+## Device Registration Base (object)
++ Name: Sample Slate Device (string, required) - The name of the device.
++ MacAddress: AA:BB:CC:DD:EE:FF (string, required) - The MAC address for the device.
++ SerialNumber: `serial` (string, required) - The Serial Number of the device.
++ Type (Device Type Enumeration, required) - The type of device trying to register.
+
+## Encoded Image (object)
++ Image: `base64encoded string` (string) - The image as a base 64 encoded string.
++ MimeType (enum[string]) - The image type.
+    + Members
+        + jpeg
+        + png
+        + gif
+
+## Event Base (object)
++ EventId: 1 (number) - The identifier for the event.
++ EventName: MyEvent (string) - The name of the event.
++ EventNumber: 1 (number) - The number assigned to the event.
++ ScheduleType (Schedule Type Enumeration) - The schedule type (Daily, Weekly, Monthly, Custom).
++ IsActive: true (boolean) - Indicates whether or not the event is active.
++ Capacity: 100 (number) - The capacity of the event.
++ EventStartDateTime: `2017-04-23T12:00:00.123` (string) - The start time of the event.
++ EventStopDateTime: `2017-04-23T13:00:00.321Z` (string) - The stop time of the event.
+
+## Meal Type Base (object)
++ Id: 1 (number) - Board Meal Type Identifier.
++ Name: Meal Type (string) - Meal Type Name.
++ ApplyTo: 0 (number) - Period Number to apply the Board Transaction to.  0 means `Current Period`.
+
+## NameValuePair (object)
++ Key: my_key (string, required) - The key for the pair.
++ Value: my_value (string, required) - The value for the pair.
+
+## Product Base (object)
++ ProductId: 1 (number) - The id of the product.
++ ProductDetailId: 1 (number) - The product detail id.
++ ProductNumber: somenumber (string) - The product number.
++ ProductDescription: somedescription (string) - The description of the product.
++ ProductType: ProductTypeA (enum[string]) - The product type.
+    + Members
+        + ProductTypeA
+        + ProductTypeZ
++ TaxScheduleId: 1 (number) - The id of the tax schedule associated with this product.
++ TaxGroupId: 1 (number) - The id of the tax group this product belongs to.
++ RetailPrice: 1.00 (number) - The retail price of the product.
++ VariablePriceMinimum: 0.01 (number) - The variable minimum price.
++ VariablePriceMaximum: 10.00 (number) - the variable maximum price.
++ ForceReceipt: false (boolean) - If true, a receipt must be printed if this product is part of the transaction.
++ AllowOverride: false (boolean) - Indicates if the product price can be modified by a Discount or Surcharge operation initiated by the cashier.
++ DiscountQuantity1: 1 (number) - Threshold at which the DiscountPrice1 should be used for the product price.
++ DiscountPrice1: 0.00 (number) - Price to be used for the product when the quantity of this product in the transaction >= DiscountQuantity1.
++ DiscountQuantity2: 1 (number) - Threshold at which the DiscountPrice2 should be used for the product price.
++ DiscountPrice2: 0.00 (number) - Price to be used for the product when the quantity of this product in the transaction >= DiscountQuantity2.
++ DiscountQuantity3: 1 (number) - Threshold at which the DiscountPrice3 should be used for the product price.
++ DiscountPrice3: 0.00 (number) - Price to be used for the product when the quantity of this product in the transaction >= DiscountQuantity3.
++ LastModified: `2016-04-23T18:25:43.511Z` (string) - DateTime object (apiary can`t do datetime) Last modified date/time (UTC)
++ AllowPolicyDiscount: true (boolean) - Indicates if the product price can be discounted by policy-based discount rule.
++ AllowPolicySurcharge: true (boolean) - Indicates if the product price can be surcharged by policy-based surcharge rule.
++ Keytop1: somestring (string) - Text to show on a product key, line 1
++ Keytop2: otherstring (string) - Text to show on a product key, line 2
+
+## Role Base (object)
++ RoleId: ``(string) - Unique identifier for the role.
++ Rights (array[Rights Enumeration])
+
+## Stored Value Account Base (object)
+
+## Tax Schedule Base (object)
++ TaxScheduleId: 1 (number) - The tax schedule id.
++ Name: My Tax Schedule (string) - The name of the tax schedule.
++ TaxAccountId: 1 (number) - The id of the tax account.
++ TaxAccountName: My Tax Account Name (string) - The name of the tax account.
++ TaxExemptQuantityEnabled: false (boolean) - Indicated if the tax exempt quantity is enabled.
++ TaxExemptQuantity: 1 (number) - The tax exempt quantity.
++ TaxableAmountMinimumEnabled: false (boolean) - Indicated if the taxable amount minimum is enabled.
++ TaxableAmountMinimum: 1.00 (number) - The taxable amount minimum value.
++ TaxableAmountMaximumEnabled: false (boolean) - Indicated if the taxable amount maximum is enabled.
++ TaxableAmountMaximum: 1.00 (number) - The taxable amount maximum value.
++ TaxLinkTaxScheduleId: 2 (number) - The linked tax schedule id.
++ TaxLinkTaxTaxes: false (boolean) - Needs explanation.
++ TenderTaxList (array[Tax Tender Base]) - The list of tender taxes.
+
+
+## Tax Tender Base (object)
++ TenderId: 1 (number) - The tender id.
++ TaxPercent: 0.0998 (number) - Tax percent.  (If 9.98% tax rate, TaxPercent == 0.0998m)
+
+## Tender Base (object)
++ Id: 4 (number) - The identifier of the tender
++ Name: cp cash 1 (string) - The name of the tender.
++ Type: 1 (number) - The type of tender.
++ ShortName: cpcash1tt (string) - The shortened name for the tender.
++ KeyTop1: cp cash (string) - The first line of text field that will be placed on a key.
++ KeyTop2: 1 (string) - The second line of a text field that will be placed on a key.
+
+
+## Request and Response Objects section do not use for documentation (object)
++ x: `************************************************************************************************`
+
+
+## Customer Get Response (object)
++ Include Customer Id
++ Customer (Customer Base) - The customer information requested.
+
+## Customer Board Balance Get Response (object)
++ Include Customer Id
++ BoardPlans (array[Balance Board Base]) - The customer board balance requested.
+
+## Customer Credential Verify Request (object)
++ Include Request Id
++ Credentials (array[Credential Base])
+    
+## Customer Credential Verify Response (object)
++ Include Request Id
++ Include Customer Guid
++ FirstName: tbfirstname600001 (string) - The first name of the customer.
++ LastName: tblastname600001 (string) - The last name of the customer.
++ Birthdate: null (string) - The birthdate of the customer.
++ Email (array[string]) - The email address(es) of the customer.
++ Thumbnail (Encoded Image) - A small visual representation of the image of the customer.
+
+## Customer Event Balance Get Response (object)
++ Include Customer Id
++ Events (array[Balance Event Base]) - The customer event balance requested.
+
+## Customer Stored Value Balance Get Response (object)
++ Include Customer Id
++ TenderId: 1 (string, required) - The identifier for the tender to get a balance on.
++ Funds (Balance Stored Value Base) - The customer stored value balance requested.
+
+## Cashiers Get Response (object)
++ Include Device Id
++ Cashiers (array[Cashier Base]) - A list of cashiers allowed on the device.
+
+## Device Heartbeat Request (object)
++ Include Request Id
++ Include Device Id
++ DateTimeUTC: `2012-04-23T18:25:43.511Z` (string) - (DateTime object) The date and time currently on the device.
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the location the device is currently in.
++ SoftwareVersion: 1.0.0.0 (string) - The current software version installed on the device.
++ Device Type (Device Type Enumeration) - The type of device.
+
+## Device Heartbeat Response (object)
++ Include Request Id
++ DateTimeUTC: `2012-04-23T18:25:43.511Z` (string) - (DateTime object) The date and time of the server.
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the location the server is currently in.
++ SoftwareVersion: 1.0.0.0 (string) - The latest software version available on the server.
++ Updates (array[Update Enumeration]) - The update actions that should be taken by the device.
+
+## Device Login Request (object)
++ Include Request Id
++ Include Operator Id
++ Include Device Id
++ Include Session Id
+
+## Device Login Response (object)
++ Include Request Id
++ PinChangeRequired: false (boolean) - Indicates whether or not a pin change is required for the operator initiating the request.
+
+## Device Logout Request (object)
++ Include Request Id
++ Include Operator Id
++ Include Device Id
++ Include Session Id
+
+## Device Logout Response (object)
++ Include Request Id
+
+## Device Registration Request (object)
++ Include Request Id
++ Include Device Registration Base
+    
+## Device Registration Response (object)
++ Include Request Id
++ Include Device Id
+
+## Device Settings Response (object)
++ Include Device Id
++ CardFormats (array[Card Format Base]) - List of card formats.
++ Cashiers (array[Cashier Base]) - List of cashiers allowed to operate the device.
++ Events (array[Event Base]) - List of all events supported by the device.
++ MealTypes (array[Meal Type Base]) - List of all meal types.
++ BoardPeriods (array[Board Period Base]) - List of all meal periods.
++ Products (array[Product Base]) - List of products for the device.
++ StoredValueAccounts (array[Stored Value Account Base]) - List of all stored value accounts supported on the device.
++ TaxSchedules (array[Tax Schedule Base]) - List of tax schedules for the device.
++ Tenders (array[Tender Base]) - List of tenders for the device.
++ Properties (array[NameValuePair]) - Properties bag for the device.
+
+## Operator PIN Change Request (object)
++ Include Request Id
++ Include Operator Id
++ OldPin: 1234 (string) - The old (current) PIN.
++ NewPin: 4321 (string) - The new PIN.
+
+## Operator PIN Change Response (object)
++ Include Request Id
+
+## Operator Validate Request (object)
++ Include Request Id
++ Include Device Id
++ Include Credentials Array
+
+## Operator Validate Response (object)
++ Include Request Id
++ Include Operator Id
++ Include Session Id
+
+
+## Common Base Types Section (object) - do not use for documentation
++ x: `**********************************************************************************`
+
+## Customer Guid (object)
++ CustomerGuid: `6492868F-3891-42AE-8C02-D9A5C8D5A321` (string) - The unique identifier for the customer (GUID).
+
+## Customer Id (object)
++ CustomerId: `6492868F-3891-42AE-8C02-D9A5C8D5A321` (string) - The unique identifier for the customer (GUID).
+
+## Device Id (object)
++ DeviceId: `15ADD661-F878-42E5-A283-D88322CBBA4F` (string) - The unique identifier for the device (GUID).
+
+## Operator Id (object)
++ OperatorId: `8D9CC985-ABDC-4851-BCEB-520B877031C8` (string) - The unique identifier for the operator (GUID).
+
+## Request Id (object)
++ RequestId: `5196CD76-D1D6-4E4B-A8FF-949113496F96` (string) - The unique identifier of the request (GUID).
+
+## Session Id (object)
++ SessionId: `56653617-4853-4651-9C04-069E71C5075C` (string) - The unique identifier for the session (GUID).
+
+## Credentials Array (object)
++ Credentials (array[Credential Base]) - List of credentials.
+
+## Device Type Enumeration (enum[string])
++ SlatePos - Slate point of sale.
++ SlateLaundry - Slate laundry.
++ SlateCopy - Slate copy.
++ Mf4100Pos - Mf4100 point of sale.
++ Mf4100Laundry - Mf4100 laundry.
++ Mf4100Copy - Mf4100 copy.
+
+## Rights Enumeration (enum[string])
++ None
++ PosPriv
++ AgeVerify
++ CancelTransaction
++ Return
++ Discount1
++ Discount2
++ Discount3
++ Discount4
++ Surcharge1
++ Surcharge2
++ Tax1
++ Tax2
++ Subtotal
++ DepartmentCard
++ MenuPage1
++ MenuPage2
++ MenuPage3
++ MenuPage4
++ PriceCheck
++ BarcodeNumber
++ BoardBalanceCheck
++ SVAccountBalanceCheck
++ AutoBoard
++ Board
++ TimesX
++ NoSale
++ SVDeposit
++ FreezeCard
++ ViewJournal
++ LastTransaction
++ SelectMenu
++ TogglePrinter
++ WipeScreen
++ Logout
++ VoidItem
++ KeypadEntry
++ PosMessage
++ TransComment
++ AutoEvent
++ EventQuery
++ TransCount
++ AutonomousEvent
++ AutonomousBoard
++ PrintReport
++ SessionDrawerAudit
++ PosDailyAudit
++ ProfitCenterDailyAudit
++ EventAccess
++ EventSwipeout
++ EventReverse
++ CheckAttendance
++ Cash
++ Check
++ StoredValueCharge
++ CreditCard
++ BoardCashEquiv
++ CardUtility
++ CardUtilityView
++ CardUtilityEncode
+
+## Schedule Type Enumeration (enum[string])
++ Daily
++ Weekly
++ Monthly
++ Custom
+
+## Update Enumeration (enum[string])
++ Settings - Download and apply all device settings.
+
+
+
+## Response Codes (object) - do not use in documentation
++ x: `********************************************************************************************`
+
+## Response 400 Error
++ error: `One or more of the request parameters were incorrect.` (enum[string])
+    + Members
+        + `One or more of the request parameters were incorrect.` (string)
+        + `Parameter {param} was invalid.` (string)
