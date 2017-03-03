@@ -306,6 +306,8 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + LastModUsername: t (string) - Last Modified User Name.
 + DoorExtendedUnlockAllowed: F (string) - Denotes whether or not the customer will have an extended unlock on door devices.
 
+## Customer Identification Requirements Base (object)
+
 ## Device Registration Base (object)
 + Name: Sample Slate Device (string, required) - The name of the device.
 + MacAddress: AA:BB:CC:DD:EE:FF (string, required) - The MAC address for the device.
@@ -338,6 +340,11 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 ## NameValuePair (object)
 + Key: my_key (string, required) - The key for the pair.
 + Value: my_value (string, required) - The value for the pair.
+
+## Operatorational Requirements Base (object)
++ CustomerIdentificationRequirement (Customer Identification Requirement) - Identification requirements for a customer using the device.
++ OperatorLoginRequirements (Operator Login Methods) - Login requirements for an operator of the device.
++ TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
 + ProductId: 1 (number) - The id of the product.
@@ -485,14 +492,17 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Device Settings Response (object)
 + Include Device Id
++ BoardPeriods (array[Board Period Base]) - List of all meal periods.
 + CardFormats (array[Card Format Base]) - List of card formats.
 + Cashiers (array[Cashier Base]) - List of cashiers allowed to operate the device.
++ Discounts (array[number]) - A list of 0 or more discount percentages.
 + Events (array[Event Base]) - List of all events supported by the device.
 + MealTypes (array[Meal Type Base]) - List of all meal types.
-+ BoardPeriods (array[Board Period Base]) - List of all meal periods.
++ OperationalRequirements (Operatorational Requirements Base) - Operator and Customer requirements and product version.
 + Products (array[Product Base]) - List of products for the device.
 + Roles (array[Role Base]) - List of roles that can be assigned to a cashier.
 + StoredValueAccounts (array[Stored Value Account Base]) - List of all stored value accounts supported on the device.
++ Surcharges (array[number]) - A list of 0 or more surcharge percentages.
 + TaxSchedules (array[Tax Schedule Base]) - List of tax schedules for the device.
 + Tenders (array[Tender Base]) - List of tenders for the device.
 + Properties (array[NameValuePair]) - Properties bag for the device.
@@ -541,6 +551,11 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 ## Credentials Array (object)
 + Credentials (array[Credential Base]) - List of credentials.
 
+## Customer Identification Requirement (enum[string])
++ CustomerNumber
++ CardNumberAndSwipe
++ Both
+
 ## Device Type Enumeration (enum[string])
 + SlatePos - Slate point of sale.
 + SlateLaundry - Slate laundry.
@@ -548,6 +563,11 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Mf4100Pos - Mf4100 point of sale.
 + Mf4100Laundry - Mf4100 laundry.
 + Mf4100Copy - Mf4100 copy.
+
+## Operator Login Methods (enum[string])
++ PickListAndOperatorNumber
++ OperatorCardSwipeOrManualEntry
++ Both
 
 ## Rights Enumeration (enum[string])
 + None
