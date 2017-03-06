@@ -83,35 +83,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
     - Response code 400 is returned if there is a problem with any of the request parameters.
     + Attributes (Response 400 Error)
 
-### Device Login [POST /device/login]
-+ Request (application/json)
-    + Attributes (Device Login Request)
-    
-+ Response 201 (application/json)
-    + Headers
-    
-            Content-Type: application/json; charset=UTF-8
-    + Attributes (Device Login Response)
-
-+ Response 400 (application/json)
-    - Response code 400 is returned if there is a problem with any of the request parameters.
-    + Attributes (Response 400 Error)
-
-### Device Logout [POST /device/logout]
-+ Request (application/json)
-    + Attributes (Device Logout Request)
-    
-+ Response 201 (application/json)
-    + Headers
-    
-            Content-Type: application/json; charset=UTF-8
-    + Attributes (Device Logout Response)
-
-+ Response 400 (application/json)
-    - Response code 400 is returned if there is a problem with any of the request parameters.
-    + Attributes (Response 400 Error)
-
-### Download Cashiers [GET /device/{id}/cashiers]
+### Download Device Operators [GET /device/{id}/operators]
 + Attributes
     + id: `ffffffff-ffff-ffff-ffff-ffffffffffff` (string, required) - The unique identifier assigned to the device.
 
@@ -119,7 +91,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
     + Headers
     
             Content-Type: application/json; charset=UTF-8
-    + Attributes (Cashiers Get Response)
+    + Attributes (Operators Get Response)
     
 
 ### Download Device Settings [GET /device/{id}/settings]
@@ -152,11 +124,40 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Operator Management [/operator]
 
+### Operator Session Begin [POST /operator/session/begin]
++ Request (application/json)
+    + Attributes (Operator Session Begin Request)
+    
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Operator Session Begin Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+### Operator Session End [POST /operator/session/end]
++ Request (application/json)
+    + Attributes (Operator Session End Request)
+    
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Type: application/json; charset=UTF-8
+    + Attributes (Operator Session End Response)
+
++ Response 400 (application/json)
+    - Response code 400 is returned if there is a problem with any of the request parameters.
+    + Attributes (Response 400 Error)
+
+
 ### Operator PIN Change [PUT /operator/pinchange]
 + Request (application/json)
     + Attributes (Operator PIN Change Request)
     
-+ Response 201 (application/json)
++ Response 200 (application/json)
     + Headers
     
             Content-Type: application/json; charset=UTF-8
@@ -243,6 +244,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + BoardPeriodStopDateTime: `2017-04-23T13:00:00.321Z` (string) - Board Period Start Date.
 + CePeriodStartDateTime: `` (string) - CE Period Start Date.
 + CePeriodStopDateTime: `` (string) - CE Period Start Date.
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the included DateTime objects.
 
 ## Card Format Base (object)
 + Name: `My Card Format` (string) - The card format name.
@@ -262,18 +264,18 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + MinimumDigitsTrack2: 0 (number) - The minimum number of digits on track 2
 + MaximumDigitsTrack2: 22 (number) - The maximum number of digits on track 2
 
-## Cashier Base (object)
-+ CashierId: 1 (number) - The identifier for the cashier.
-+ CashierNumber: 1 (number) - The number for the cashier (used for login purposes).
-+ FullName: `bs manager (1,1)` (string) - The full name of the cashier.
-+ Pin: 1 (number) - The PIN for the cashier.
-+ IsManager: true (boolean) - True means the cashier has manager override privilege.
-+ CashDrawer: 1 (number) - The cashier`s drawer number.
-+ PinRequired: false (boolean) - Is the cashier`s pin required for login.
-+ PinChangeRequired: false (boolean) - Does the cashier have to change their pin.
-+ CardNumber: 600001 (string) - The cashier`s card number.
-+ IssueNumber: null (string) - The cashier`s card issue number.
-+ Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the cashier.
+## Operator Base (object)
++ Include Operator Id
++ OperatorNumber: 1 (number) - The number for the operator (used for login purposes).
++ FullName: `bs manager (1,1)` (string) - The full name of the operator.
++ Pin: 1 (string) - The PIN for the operator.
++ IsManager: true (boolean) - True means the operator has manager override privilege.
++ CashDrawer: 1 (number) - The operator`s drawer number.
++ PinRequired: false (boolean) - Is the operator`s pin required for login.
++ PinChangeRequired: false (boolean) - Does the operator have to change their pin.
++ CardNumber: 600001 (string) - The operator`s card number.
++ IssueNumber: null (string) - The operator`s card issue number.
++ Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the operator.
         
 ## Credential Enumeration (enum[string])
 + Track2 - Credential origin is from a card swipe of Track2 data.
@@ -327,11 +329,10 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + EventName: MyEvent (string) - The name of the event.
 + EventNumber: 1 (number) - The number assigned to the event.
 + ScheduleType (Schedule Type Enumeration) - The schedule type (Daily, Weekly, Monthly, Custom).
-+ IsActive: true (boolean) - Indicates whether or not the event is active.
 + Capacity: 100 (number) - The capacity of the event.
 + EventStartDateTime: `2017-04-23T12:00:00.123` (string) - The start time of the event.
 + EventStopDateTime: `2017-04-23T13:00:00.321Z` (string) - The stop time of the event.
-
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the included DateTime objects.
 ## Meal Type Base (object)
 + Id: 1 (number) - Board Meal Type Identifier.
 + Name: Meal Type (string) - Meal Type Name.
@@ -343,7 +344,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Operatorational Requirements Base (object)
 + CustomerIdentificationRequirement (Customer Identification Requirement) - Identification requirements for a customer using the device.
-+ OperatorLoginRequirements (Operator Login Methods) - Login requirements for an operator of the device.
++ OperatorLoginRequirements (Operator Session Begin Methods) - Login requirements for an operator of the device.
 + TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
@@ -361,7 +362,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + VariablePriceMinimum: 0.01 (number) - The variable minimum price.
 + VariablePriceMaximum: 10.00 (number) - the variable maximum price.
 + ForceReceipt: false (boolean) - If true, a receipt must be printed if this product is part of the transaction.
-+ AllowOverride: false (boolean) - Indicates if the product price can be modified by a Discount or Surcharge operation initiated by the cashier.
++ AllowOverride: false (boolean) - Indicates if the product price can be modified by a Discount or Surcharge operation initiated by the operator.
 + DiscountQuantity1: 1 (number) - Threshold at which the DiscountPrice1 should be used for the product price.
 + DiscountPrice1: 0.00 (number) - Price to be used for the product when the quantity of this product in the transaction >= DiscountQuantity1.
 + DiscountQuantity2: 1 (number) - Threshold at which the DiscountPrice2 should be used for the product price.
@@ -371,8 +372,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + LastModified: `2016-04-23T18:25:43.511Z` (string) - DateTime object (apiary can`t do datetime) Last modified date/time (UTC)
 + AllowPolicyDiscount: true (boolean) - Indicates if the product price can be discounted by policy-based discount rule.
 + AllowPolicySurcharge: true (boolean) - Indicates if the product price can be surcharged by policy-based surcharge rule.
-+ Keytop1: somestring (string) - Text to show on a product key, line 1
-+ Keytop2: otherstring (string) - Text to show on a product key, line 2
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the included DateTime objects.
 
 ## Role Base (object)
 + RoleId: `065dfe36-7694-4571-b86c-d9bedacdbf77`(string) - Unique identifier for the role.
@@ -406,8 +406,6 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Name: cp cash 1 (string) - The name of the tender.
 + Type: 1 (number) - The type of tender.
 + ShortName: cpcash1tt (string) - The shortened name for the tender.
-+ KeyTop1: cp cash (string) - The first line of text field that will be placed on a key.
-+ KeyTop2: 1 (string) - The second line of a text field that will be placed on a key.
 
 
 ## Request and Response Objects section do not use for documentation (object)
@@ -444,9 +442,9 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + TenderId: 1 (string, required) - The identifier for the tender to get a balance on.
 + Funds (Balance Stored Value Base) - The customer stored value balance requested.
 
-## Cashiers Get Response (object)
+## Operators Get Response (object)
 + Include Device Id
-+ Cashiers (array[Cashier Base]) - A list of cashiers allowed on the device.
++ Operator (array[Operator Base]) - A list of operators allowed on the device.
 
 ## Device Heartbeat Request (object)
 + Include Request Id
@@ -463,23 +461,26 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + SoftwareVersion: 1.0.0.0 (string) - The latest software version available on the server.
 + Updates (array[Update Enumeration]) - The update actions that should be taken by the device.
 
-## Device Login Request (object)
+## Operator Session Begin Request (object)
 + Include Request Id
 + Include Operator Id
 + Include Device Id
 + Include Session Id
++ DateTimeUTC: `2012-04-23T18:25:43.511Z` (string) - (DateTime object) The date and time that the login occured.
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the location the device is currently in.
 
-## Device Login Response (object)
+## Operator Session Begin Response (object)
 + Include Request Id
-+ PinChangeRequired: false (boolean) - Indicates whether or not a pin change is required for the operator initiating the request.
 
-## Device Logout Request (object)
+## Operator Session End Request (object)
 + Include Request Id
 + Include Operator Id
 + Include Device Id
 + Include Session Id
++ DateTimeUTC: `2012-04-23T18:25:43.511Z` (string) - (DateTime object) The date and time that the logout occured.
++ DateTimeOffset: `-07:00` (string) - The UTC offset of the location the device is currently in.
 
-## Device Logout Response (object)
+## Operator Session End Response (object)
 + Include Request Id
 
 ## Device Registration Request (object)
@@ -494,13 +495,13 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Include Device Id
 + BoardPeriods (array[Board Period Base]) - List of all meal periods.
 + CardFormats (array[Card Format Base]) - List of card formats.
-+ Cashiers (array[Cashier Base]) - List of cashiers allowed to operate the device.
++ Operators (array[Operator Base]) - List of operators allowed to operate the device.
 + Discounts (array[number]) - A list of 0 or more discount percentages.
 + Events (array[Event Base]) - List of all events supported by the device.
 + MealTypes (array[Meal Type Base]) - List of all meal types.
 + OperationalRequirements (Operatorational Requirements Base) - Operator and Customer requirements and product version.
 + Products (array[Product Base]) - List of products for the device.
-+ Roles (array[Role Base]) - List of roles that can be assigned to a cashier.
++ Roles (array[Role Base]) - List of roles that can be assigned to an operator.
 + StoredValueAccounts (array[Stored Value Account Base]) - List of all stored value accounts supported on the device.
 + Surcharges (array[number]) - A list of 0 or more surcharge percentages.
 + TaxSchedules (array[Tax Schedule Base]) - List of tax schedules for the device.
@@ -552,9 +553,9 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Credentials (array[Credential Base]) - List of credentials.
 
 ## Customer Identification Requirement (enum[string])
-+ CustomerNumber
-+ CardNumberAndSwipe
-+ Both
++ CustomerNumber - Use a customer number to validate a customer.
++ CardNumberAndSwipe - Use a card number manually or swiped to validate a customer.
++ Any - Any other form of idenfication (provided in this enumeration) are considered valid.
 
 ## Device Type Enumeration (enum[string])
 + SlatePos - Slate point of sale.
@@ -564,10 +565,10 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Mf4100Laundry - Mf4100 laundry.
 + Mf4100Copy - Mf4100 copy.
 
-## Operator Login Methods (enum[string])
-+ PickListAndOperatorNumber
-+ OperatorCardSwipeOrManualEntry
-+ Both
+## Operator Session Begin Methods (enum[string])
++ PickListAndOperatorNumber - Operator can login by selecting their name from a list or provide their operator number and a PIN.
++ OperatorCardSwipeOrManualEntry - Operator can provide their card number manually or via a swipe.
++ Any - Any other form of idenfication (provided in this enumeration) are considered valid.
 
 ## Rights Enumeration (enum[string])
 + None
