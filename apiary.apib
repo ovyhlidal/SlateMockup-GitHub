@@ -352,10 +352,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + ProductDetailId: 1 (number) - The product detail id.
 + ProductNumber: somenumber (string) - The product number.
 + ProductDescription: somedescription (string) - The description of the product.
-+ ProductType: ProductTypeA (enum[string]) - The product type.
-    + Members
-        + ProductTypeA
-        + ProductTypeZ
++ ProductType(Product Type Enumeration) - The product type.
 + TaxScheduleId: 1 (number) - The id of the tax schedule associated with this product.
 + TaxGroupId: 1 (number) - The id of the tax group this product belongs to.
 + RetailPrice: 1.00 (number) - The retail price of the product.
@@ -569,6 +566,13 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + PickListAndOperatorNumber - Operator can login by selecting their name from a list or provide their operator number and a PIN.
 + OperatorCardSwipeOrManualEntry - Operator can provide their card number manually or via a swipe.
 + Any - Any other form of idenfication (provided in this enumeration) are considered valid.
+
+## Product Type Enumeration (enum[string])
++ Standard - Standard product.
++ Weighed - Product must be weighed.
++ WeighedZeroTare - Product must be weighed (zero tare).
++ PromptForCount - The quantity of this product must be specified at the time of purchase.
++ PromptForPrice - The price of this product must be entered at the time of purchase.
 
 ## Rights Enumeration (enum[string])
 + PosPriv
