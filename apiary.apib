@@ -208,7 +208,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + GuestReset: W (string)
 + ExtraReset: D (string)
 + CashEquivAmount: 8000 (number)
-+ LimitPeriodBy: Week (enum[string])
++ LimitPeriodBy: Week (enum)
     + Members
         + Week
         + Month
@@ -278,7 +278,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + IssueNumber: null (string) - The operator`s card issue number.
 + Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the operator.
         
-## Credential Enumeration (enum[string])
+## Credential Enumeration (enum)
 + Track2 - Credential origin is from a card swipe of Track2 data.
 + ManualEntry - Credential origin was manually keyed.
 + Email - Credential is an email address.
@@ -319,7 +319,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Encoded Image (object)
 + Image: `base64encoded string` (string) - The image as a base 64 encoded string.
-+ MimeType (enum[string]) - The image type.
++ MimeType (enum) - The image type.
     + Members
         + jpeg
         + png
@@ -343,9 +343,9 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Key: my_key (string, required) - The key for the pair.
 + Value: my_value (string, required) - The value for the pair.
 
-## Operatorational Requirements Base (object)
-+ CustomerIdentificationRequirement (Customer Identification Requirement) - Identification requirements for a customer using the device.
-+ OperatorLoginRequirements (Operator Session Begin Methods) - Login requirements for an operator of the device.
+## Operational Requirements Base (object)
++ CustomerIdentificationRequirement (array[Credential Enumeration]) - Identification requirements for a customer using the device.
++ OperatorLoginRequirements (array[Credential Enumeration]) - Login requirements for an operator of the device.
 + TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
@@ -496,7 +496,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Operators (array[Operator Base]) - List of operators allowed to operate the device.
 + Events (array[Event Base]) - List of all events supported by the device.
 + MealTypes (array[Meal Type Base]) - List of all meal types.
-+ OperationalRequirements (Operatorational Requirements Base) - Operator and Customer requirements and product version.
++ OperationalRequirements (Operational Requirements Base) - Operator and Customer requirements and product version.
 + Products (array[Product Base]) - List of products for the device.
 + Roles (array[Role Base]) - List of roles that can be assigned to an operator.
 + StoredValueAccounts (array[Stored Value Account Base]) - List of all stored value accounts supported on the device.
@@ -548,12 +548,12 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 ## Credentials Array (object)
 + Credentials (array[Credential Base]) - List of credentials.
 
-## Customer Identification Requirement (enum[string])
+## Customer Identification Requirement (enum)
 + CustomerNumber - Use a customer number to validate a customer.
 + CardNumberAndSwipe - Use a card number manually or swiped to validate a customer.
 + Any - Any other form of idenfication (provided in this enumeration) is considered valid.
 
-## Device Type Enumeration (enum[string])
+## Device Type Enumeration (enum)
 + SlatePos - Slate point of sale.
 + SlateLaundry - Slate laundry.
 + SlateCopy - Slate copy.
@@ -561,19 +561,19 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Mf4100Laundry - Mf4100 laundry.
 + Mf4100Copy - Mf4100 copy.
 
-## Operator Session Begin Methods (enum[string])
+## Operator Session Begin Methods (enum)
 + PickListAndOperatorNumber - Operator can login by selecting their name from a list or provide their operator number and a PIN.
 + OperatorCardSwipeOrManualEntry - Operator can provide their card number manually or via a swipe.
 + Any - Any other form of idenfication (provided in this enumeration) is considered valid.
 
-## Product Type Enumeration (enum[string])
+## Product Type Enumeration (enum)
 + Standard - Standard product.
 + Weighed - Product must be weighed.
 + WeighedZeroTare - Product must be weighed (zero tare).
 + PromptForCount - The quantity of this product must be specified at the time of purchase.
 + PromptForPrice - The price of this product must be entered at the time of purchase.
 
-## Rights Enumeration (enum[string])
+## Rights Enumeration (enum)
 + PosPriv
 + AgeVerify
 + CancelTransaction
@@ -634,13 +634,13 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + CardUtilityView
 + CardUtilityEncode
 
-## Schedule Type Enumeration (enum[string])
+## Schedule Type Enumeration (enum)
 + Daily
 + Weekly
 + Monthly
 + Custom
 
-## Update Enumeration (enum[string])
+## Update Enumeration (enum)
 + Settings - Download and apply all device settings.
 
 
@@ -649,7 +649,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + x: `********************************************************************************************`
 
 ## Response 400 Error
-+ error: `One or more of the request parameters were incorrect.` (enum[string])
++ error: `One or more of the request parameters were incorrect.` (enum)
     + Members
         + `One or more of the request parameters were incorrect.` (string)
         + `Parameter {param} was invalid.` (string)
