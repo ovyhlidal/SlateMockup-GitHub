@@ -5,12 +5,13 @@ FORMAT: 1A
 This is the API documentation for the Blackboard Transact Slate project.  The intended audience is for developers in the Phoenix and Brno offices.
 
 # Group Customer
+    
+## Customer Management [/customer]
 
-## Customer Balances [/customer/{id}/balance]
-
-### Customer Board Balance Get [GET /customer/{id}/balance/board]
+### Customer Board Balance Get [GET /customer/{customerId}/device/{deviceId}/board/balance]
 + Attributes
-    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+    + customerId: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+    + deviceId: `dddddddd-dddd-dddd-dddd-dddddddddddd` - The unique identifier for the device (GUID).
 
 + Response 200 (application/json)
     + Headers
@@ -18,28 +19,16 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
             Content-Type: application/json; charset=UTF-8
     + Attributes (Customer Board Balance Get Response)
 
-### Customer Event Balance Get [GET /customer/{id}/balance/event]
+### Customer Stored Value Balance Get [GET /customer/{customerId}/device/{deviceId}/storedvalue/balance]
 + Attributes
-    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
-
-+ Response 200 (application/json)
-    + Headers
-    
-            Content-Type: application/json; charset=UTF-8
-    + Attributes (Customer Event Balance Get Response)
-
-### Customer Stored Value Balance Get [GET /customer/{id}/balance/storedvalue]
-+ Attributes
-    + id: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+    + customerId: `cccccccc-cccc-cccc-cccc-cccccccccccc` - The unique identifier for the customer (GUID).
+    + deviceId: `dddddddd-dddd-dddd-dddd-dddddddddddd` - The unique identifier for the device (GUID).
 
 + Response 200 (application/json)
     + Headers
     
             Content-Type: application/json; charset=UTF-8
     + Attributes (Customer Stored Value Balance Get Response)
-    
-    
-## Customer Management [/customer]
 
 ### Customer Credential Verify [POST /customer/credential/verify]
 + Request (application/json)
