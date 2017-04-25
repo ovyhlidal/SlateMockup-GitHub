@@ -369,6 +369,12 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + TypeId: 1 (number) - The identifier for the type of stored value account.
 + Name: MySvAccount (string) - The name for the stored value account.
 
+## Stored Value Account Balance Base
++ SvAccountTypeName: MyAccount (string) - The full name of the stored value account.
++ SvAccountShortName: MyAcNm (string) - The short name of the stored value account.
++ Balance: 1234 (number) - The account balance amount.
++ Credit: 4321 (number) - The account credit amount.
+
 ## Tax Schedule Base (object)
 + TaxScheduleId: 1 (number) - The tax schedule id.
 + Name: My Tax Schedule (string) - The name of the tax schedule.
@@ -405,6 +411,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Customer Board Balance Get Response (object)
 + Include Customer Id
++ Include Device Id
 + BoardPlans (array[Balance Board Base]) - The customer board balance requested.
 
 ## Customer Credential Verify Request (object)
@@ -420,14 +427,10 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Email (array[string]) - The email address(es) of the customer.
 + Thumbnail (Encoded Image) - A small visual representation of the image of the customer.
 
-## Customer Event Balance Get Response (object)
-+ Include Customer Id
-+ Events (array[Balance Event Base]) - The customer event balance requested.
-
 ## Customer Stored Value Balance Get Response (object)
 + Include Customer Id
-+ TenderId: 1 (string, required) - The identifier for the tender to get a balance on.
-+ Funds (Balance Stored Value Base) - The customer stored value balance requested.
++ Include Device Id
++ StoredValueAccounts (array[Stored Value Account Balance Base]) - The customer board balance requested.
 
 ## Operators Get Response (object)
 + Include Device Id
