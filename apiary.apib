@@ -277,9 +277,9 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + IdNumber - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
 
 ## Credential Requirements Enumeration (enum)
-+ CredentialPresent - Credentials presented at the client will be accepted (i.e. Card Swipe, Biometrics, etc.).
-+ CredentialNotPresent - Credential origin was manually keyed.
-+ Id - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
++ CredentialPresent - The credential must be physically present for verification (i.e. Card Swipe, Biometrics, etc.).
++ CredentialNotPresent - The credentail value can be manually entered
++ Number - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
 
 ## Credential Base (object)
 + Type: `Track2` (Credential Enumeration) - Enumeration of possible credential values.
@@ -339,7 +339,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Operational Requirements Base (object)
 + CustomerIdentificationRequirement (array[Credential Requirements Enumeration]) - Identification requirements for a customer using the device.
-+ OperatorLoginRequirements (array[Credential Requirements Enumeration]) - Login requirements for an operator of the device.
++ OperatorLoginRequirements (array[Credential Requirements Enumeration]) - Specifies the methods that Operators can use to login to the POS.
 + TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
