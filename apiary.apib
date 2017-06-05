@@ -276,6 +276,11 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + UserGuid - The unigue (Guid) identifier assigned to the customer.
 + IdNumber - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
 
+## Credential Requirements Enumeration (enum)
++ CredentialPresent - Credentials presented at the client will be accepted (i.e. Card Swipe, Biometrics, etc.).
++ CredentialNotPresent - Credential origin was manually keyed.
++ Id - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
+
 ## Credential Base (object)
 + Type: `Track2` (Credential Enumeration) - Enumeration of possible credential values.
 + Value: `0000000001223334444` (string) - The value of the credential. 
@@ -333,8 +338,8 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Value: my_value (string, required) - The value for the pair.
 
 ## Operational Requirements Base (object)
-+ CustomerIdentificationRequirement (array[Credential Enumeration]) - Identification requirements for a customer using the device.
-+ OperatorLoginRequirements (array[Credential Enumeration]) - Login requirements for an operator of the device.
++ CustomerIdentificationRequirement (array[Credential Requirements Enumeration]) - Identification requirements for a customer using the device.
++ OperatorLoginRequirements (array[Credential Requirements Enumeration]) - Login requirements for an operator of the device.
 + TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
