@@ -277,6 +277,33 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + CardNumber: 1234560000000022 (string) - The operator`s card number.
 + IssueNumber: null (string) - The operator`s card issue number.
 + Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the operator.
+
+## Operator Second (object)
++ Include Operator Id
++ OperatorNumber: 1 (number) - The number for the operator (used for login purposes).
++ FullName: `bs manager (1,1)` (string) - The full name of the operator.
++ Pin: 1 (string) - The PIN for the operator.
++ IsManager: true (boolean) - True means the operator has manager override privilege.
++ CashDrawer: 1 (number) - The operator`s drawer number.
++ PinRequired: false (boolean) - Is the operator`s pin required for login.
++ PinChangeRequired: false (boolean) - Does the operator have to change their pin.
++ CardNumber: 1234560000000022 (string) - The operator`s card number.
++ IssueNumber: null (string) - The operator`s card issue number.
++ Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the operator.
+
+## Operator Third (object)
++ Include Operator Id
++ OperatorNumber: 1 (number) - The number for the operator (used for login purposes).
++ FullName: `bs manager (1,1)` (string) - The full name of the operator.
++ Pin: 1 (string) - The PIN for the operator.
++ IsManager: true (boolean) - True means the operator has manager override privilege.
++ CashDrawer: 1 (number) - The operator`s drawer number.
++ PinRequired: false (boolean) - Is the operator`s pin required for login.
++ PinChangeRequired: false (boolean) - Does the operator have to change their pin.
++ CardNumber: 1234560000000022 (string) - The operator`s card number.
++ IssueNumber: null (string) - The operator`s card issue number.
++ Roles (array[string]) - The list of roles (identified as a list of guids corresponding to role ids) assigned to the operator.
+
         
 ## Credential Enumeration (enum)
 + Track2 - Credential origin is from a card swipe of Track2 data.
@@ -290,6 +317,12 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 ## Credential Requirements Enumeration (enum)
 + CredentialPresent - The credential must be physically present for verification (i.e. Card Swipe, Biometrics, etc.).
 + CredentialNotPresent - The credentail value can be manually entered
++ Number - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
+
+## Credential Requirements Enumeration2 (enum)
++ CredentialNotPresent - The credentail value can be manually entered
+
+## Credential Requirements Enumeration3 (enum)
 + Number - The unique identifier assigned to an agent in the system (i.e. Customer, Operator, etc.).
 
 ## Credential Base (object)
@@ -386,7 +419,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Operational Requirements Base (object)
 + CustomerIdentificationRequirement (array[Credential Requirements Enumeration]) - Identification requirements for a customer using the device.
-+ OperatorLoginRequirements (array[Credential Requirements Enumeration]) - Specifies the methods that Operators can use to login to the POS.
++ OperatorLoginRequirements (array[Credential Requirements Enumeration, Credential Requirements Enumeration2, Credential Requirements Enumeration3 ]) - Specifies the methods that Operators can use to login to the POS.
 + TsopProductVersion: 4.0.0.0 (string) - The product version of Transact OnPremise running on the server.
 
 ## Product Base (object)
@@ -486,7 +519,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 
 ## Operators Get Response (object)
 + Include Device Id
-+ Operator (array[Operator Base]) - A list of operators allowed on the device.
++ Operator (array[Operator Base, Operator Second, Operator Third]) - A list of operators allowed on the device.
 
 ## Device Heartbeat Request (object)
 + Include Request Id
@@ -547,7 +580,7 @@ This is the API documentation for the Blackboard Transact Slate project.  The in
 + Include Device Id
 + BoardPeriods (array[Board Period Base]) - List of all meal periods.
 + CardFormats (array[Card Format Base]) - List of card formats.
-+ Operators (array[Operator Base]) - List of operators allowed to operate the device.
++ Operators (array[Operator Base, Operator Second, Operator Third]) - List of operators allowed to operate the device.
 + Events (array[Event Base]) - List of all events supported by the device.
 + MealTypes (array[Meal Type Base]) - List of all meal types.
 + OperationalRequirements (Operational Requirements Base) - Operator and Customer requirements and product version.
